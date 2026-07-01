@@ -4,20 +4,25 @@ import os
 from supabase import create_client
 from dotenv import load_dotenv
 import streamlit as st
+import streamlit as st
 
-# 1. إعداد كلمة السر
-PASSWORD = "1153991 youb"  
-# 2. شاشة الدخول
-password_input = st.text_input("ادخل كلمة السر للدخول:", type="password")
+# 1. تهيئة حالة الجلسة (Session State) باش تعقل بلي دخلنا
+if 'logged_in' not in st.session_state:
+    st.session_state.logged_in = False
 
-if password_input == PASSWORD:
-    st.success("مرحبا بك في تطبيق العيادة!")
-    # هنا حط باقي الكود ديال التطبيق ديالك كامل
-    # مثلاً:
-    # st.write("هنا داتا ديال المرضى...")
-else:
-    st.warning("المرجو إدخال كلمة السر للدخول.")
-    st.stop() # هاد السطر كيوقف التطبيق وما كيخلي حتى شي حاجة تبان من التحت
+# 2. إذا مازال ما دخل، وريه خانة الدخول
+if not st.session_state.logged_in:
+    password_input = st.text_input("ادخل كلمة السر للدخول:", type="password")
+    if password_input == "399151 ziadi":
+        st.session_state.logged_in = True
+        st.rerun()  # هادي كتعاود تشغل الصفحة باش تختفي الخانة
+    else:
+        st.warning("المرجو إدخال كلمة السر للدخول.")
+        st.stop() # كيوقف هنا وما كيبين والو لتحت
+
+# 3. إذا كان logged_in صحيح، هنا كيبان التطبيق ديالك
+st.success("مرحبا بك في تطبيق العيادة!")
+
 
 # --- 1. الاتصال بـ السحاب ---
 load_dotenv()
