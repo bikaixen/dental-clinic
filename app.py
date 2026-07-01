@@ -6,8 +6,7 @@ from dotenv import load_dotenv
 import streamlit as st
 
 # 1. إعداد كلمة السر
-PASSWORD = "1153991 youb"  # بدل 123 بالكود اللي بغيتي
-
+PASSWORD = "1153991 youb"  
 # 2. شاشة الدخول
 password_input = st.text_input("ادخل كلمة السر للدخول:", type="password")
 
