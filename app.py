@@ -3,6 +3,22 @@ import json
 import os
 from supabase import create_client
 from dotenv import load_dotenv
+import streamlit as st
+
+# 1. إعداد كلمة السر
+PASSWORD = "123"  # بدل 123 بالكود اللي بغيتي
+
+# 2. شاشة الدخول
+password_input = st.text_input("ادخل كلمة السر للدخول:", type="password")
+
+if password_input == PASSWORD:
+    st.success("مرحبا بك في تطبيق العيادة!")
+    # هنا حط باقي الكود ديال التطبيق ديالك كامل
+    # مثلاً:
+    # st.write("هنا داتا ديال المرضى...")
+else:
+    st.warning("المرجو إدخال كلمة السر للدخول.")
+    st.stop() # هاد السطر كيوقف التطبيق وما كيخلي حتى شي حاجة تبان من التحت
 
 # --- 1. الاتصال بـ السحاب ---
 load_dotenv()
